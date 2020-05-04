@@ -266,7 +266,10 @@ export default class DoctorPage extends Component {
       {
         menuItem: "New Doctor",
         render: () => (
+          
           <Tab.Pane>
+            <Container>
+            <Segment>
             <Header as="h4" color="grey">
               Add Doctor
             </Header>
@@ -323,13 +326,19 @@ export default class DoctorPage extends Component {
                 Create
               </Button>
             </Form>
+            </Segment>
+            </Container>
           </Tab.Pane>
+          
         ),
       },
       {
         menuItem: "Search Patient",
         render: () => (
+          
           <Tab.Pane>
+            <Container>
+            <Segment>
             {this.state.isSearchPatientActive ? (
               <div>
                 <Header style={{ color: "white" }} textAlign="center" icon>
@@ -375,15 +384,24 @@ export default class DoctorPage extends Component {
                 ></ShowMedicalRecord>
               </div>
             )}
+            </Segment>
+            </Container>
           </Tab.Pane>
+          
         ),
       },
       {
         menuItem: "New Patient",
         render: () => (
+          
           <Tab.Pane>
-            <MedicalRecordForm></MedicalRecordForm>
+            <Container>
+              <Segment>
+                          <MedicalRecordForm></MedicalRecordForm>
+              </Segment>
+            </Container>
           </Tab.Pane>
+          
         ),
       },
     ];

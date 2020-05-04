@@ -57,7 +57,7 @@ export class RequestInsRequests extends Component {
   getBills = async () => {
     this.setState({ downloadLoading: true });
     axios
-      .get("http://localhost:3000/download", {
+      .get("https://blockchainhealth.herokuapp.com/download", {
         params: {
           data: this.state.request[6],
           password: this.state.aadhar,

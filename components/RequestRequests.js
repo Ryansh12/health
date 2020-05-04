@@ -96,7 +96,7 @@ export class RequestRequests extends Component {
       pass = this.props.request[9];
     this.setState({ billsDownloadLoading: true });
     axios
-      .get("http://localhost:3000/download", {
+      .get("https://blockchainhealth.herokuapp.com/download", {
         params: {
           data: fileHash,
           password: pass,
@@ -122,7 +122,7 @@ export class RequestRequests extends Component {
       pass = this.props.request[9];
     this.setState({ docDownloadLoading: true });
     axios
-      .get("http://localhost:3000/download", {
+      .get("https://blockchainhealth.herokuapp.com/download", {
         params: {
           data: fileHash,
           password: pass,

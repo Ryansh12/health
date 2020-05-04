@@ -280,7 +280,7 @@ export class showInsurance extends Component {
       }
 
       axios
-        .post("http://localhost:3000/upload", data, {
+        .post("https://blockchainhealth.herokuapp.com/upload", data, {
           onUploadProgress: (ProgressEvent) => {
             this.setState({
               loaded: (ProgressEvent.loaded / ProgressEvent.total) * 100,
@@ -307,7 +307,7 @@ export class showInsurance extends Component {
   getDocuments = async () => {
     this.setState({ downloadLoading: true });
     axios
-      .get("http://localhost:3000/download", {
+      .get("https://blockchainhealth.herokuapp.com/download", {
         params: {
           data: this.state.documents,
           password: this.state.aadhar,
