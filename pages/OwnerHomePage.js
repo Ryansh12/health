@@ -300,7 +300,7 @@ class OwnerHomePage extends Component {
       }
 
       axios
-        .post("https://blockchainhealth.herokuapp.com/upload", data, {
+        .post("./upload", data, {
           onUploadProgress: (ProgressEvent) => {
             this.setState({
               loaded: (ProgressEvent.loaded / ProgressEvent.total) * 100,

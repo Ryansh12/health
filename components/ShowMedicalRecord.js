@@ -215,7 +215,7 @@ export default class ShowMedicalRecord extends Component {
       }
 
       axios
-        .post("https://blockchainhealth.herokuapp.com/upload", data, {
+        .post("./upload", data, {
           onUploadProgress: (ProgressEvent) => {
             if (buttonType == "billing") {
               this.setState({
@@ -749,7 +749,7 @@ export default class ShowMedicalRecord extends Component {
     }
 
     axios
-      .get("https://blockchainhealth.herokuapp.com/download", {
+      .get("./download", {
         params: {
           data: fileHashSend,
           password: output,

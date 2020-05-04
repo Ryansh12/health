@@ -239,7 +239,7 @@ export default class MedicalRecordForm extends Component {
       }
 
       axios
-        .post("https://blockchainhealth.herokuapp.com/upload", data, {
+        .post("./upload", data, {
           onUploadProgress: (ProgressEvent) => {
             if (buttonType == "billing") {
               this.setState({
