@@ -20,7 +20,7 @@ class BannerHome extends Component {
                 <div class="ui text segment landing">
                   <div class="text-block">
                   <Typing speed={5} hideCursor={true}>
-                    <h1 style={{fontSize: '45px !important'}}>HEALTH MANAGEMENT ON BLOCKCHAIN</h1>
+                    <h1 style={{fontSize: '45px !important'}}>HEALTH DATA MANAGEMENT ON BLOCKCHAIN</h1>
                     <h2 style={{fontSize: '30px !important'}}><div>GLOBAL PLATFORM FOR HEALTH MANAGEMENT BENEFIT</div>
                     INSURANCE AND ADMINISTRATION</h2>
                     </Typing> 
