@@ -8,6 +8,7 @@ const handle = routes.getRequestHandler(app);
 const Encryptor = require("file-encryptor-promise");
 const axios = require("axios");
 const path = require("path");
+const port = process.env.PORT || 3000;
 
 //file upload
 var multer = require("multer");
@@ -291,7 +292,7 @@ app
       return handle(req, res);
     });
 
-    server.use(handle).listen(3000, (err) => {
+    server.use(handle).listen(port, (err) => {
       if (err) throw err;
       console.log("> Ready on http://localhost:3000");
     });
