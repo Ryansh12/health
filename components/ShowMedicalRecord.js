@@ -215,7 +215,7 @@ export default class ShowMedicalRecord extends Component {
       }
 
       axios
-        .post("./upload", data, {
+        .post("/upload", data, {
           onUploadProgress: (ProgressEvent) => {
             if (buttonType == "billing") {
               this.setState({
@@ -749,7 +749,7 @@ export default class ShowMedicalRecord extends Component {
     }
 
     axios
-      .get("./download", {
+      .get("/download", {
         params: {
           data: fileHashSend,
           password: output,
