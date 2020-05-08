@@ -22,6 +22,7 @@ import {
   Message,
   Input,
   Modal,
+  Container,
 } from "semantic-ui-react";
 
 export class PatientHomePage extends Component {
@@ -969,8 +970,10 @@ export class PatientHomePage extends Component {
               </Button>
             </Modal.Actions>
           </Modal>
-          <Segment style={{ background: "#F0F8FF" }}>
+          <Segment style={{ background: "#F0F8FF" , marginTop:'58px'}}>
+            <Container>
             <Tab defaultActiveIndex="0" color="red" panes={this.getPanesData()} />
+            </Container>
           </Segment>
         </Layout>
       </div>

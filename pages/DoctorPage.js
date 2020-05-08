@@ -433,8 +433,11 @@ export default class DoctorPage extends Component {
               </Button>
             </Modal.Actions>
           </Modal>
-          <Segment style={{ background: "#F0F8FF" }}>
+
+          <Segment style={{ background: "#f0f8ff" }}>
+            <Container>
             <Tab defaultActiveIndex="1" color="red" panes={this.getPanesData()} />
+            </Container>
           </Segment>
         </Layout>
       </div>

@@ -7,7 +7,7 @@ class BannerInsurance extends Component {
     render() {
 
         const imgStyle = {
-            width:'65%'
+            marginTop:'100px'
         }
         return (
             <div>
@@ -16,7 +16,7 @@ class BannerInsurance extends Component {
                     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"></link>
                     <link rel="stylesheet"  href="../static/css/insurance.css"/>
                 </Head>
-                <div class="ui text segment landing">
+                <div class="ui text segment landing" >
                   <div class="text-block">
                   {/* <Typing speed={5} hideCursor={true}> */}
                     <h1 style={{fontSize: '55px !important'}}>EMPOWERING MEMBERS</h1>

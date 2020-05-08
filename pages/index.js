@@ -10,6 +10,7 @@ import Head from 'next/head';
 export class index extends Component {
     render() {
         return (
+            
             <div>
                 <Head>
                     <title>Blockchain Health</title>

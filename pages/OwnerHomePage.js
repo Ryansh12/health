@@ -31,6 +31,7 @@ import {
   Dropdown,
   Divider,
   Modal,
+  Container,
 } from "semantic-ui-react";
 
 class OwnerHomePage extends Component {
@@ -803,7 +804,9 @@ class OwnerHomePage extends Component {
             </Modal.Actions>
           </Modal>
           {this.state.isDashBoardActive ? (
+            
             <Segment stacked style={{ background: "#F0F8FF" }}>
+              <Container>
               <Button floated="right" onClick={this.logoutModalOpen} negative>
                 {" "}
                 <Icon name="sign-out" />
@@ -879,13 +882,15 @@ class OwnerHomePage extends Component {
                 onTabChange={this.handleChange}
                 panes={this.getPanesData()}
               />
+            </Container>
             </Segment>
+            
           ) : null}
           {this.state.isLoginActive ? (
             <Segment stacked style={{ height: "100vh", background: "#F0F8FF" }}>
               <Grid
                 textAlign="center"
-                style={{ height: "80vh" }}
+                style={{ height: "30vh" }}
                 verticalAlign="middle"
               >
                 <Grid.Column style={{ maxWidth: 450 }}>
