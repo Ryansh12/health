@@ -16,17 +16,18 @@ class BannerDoctor extends Component {
                     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"></link>
                     <link rel="stylesheet"  href="../static/css/doctor.css"/>
                 </Head>
-                {/* <Typing speed={5} hideCursor={true}> */}
                 <div class="ui text segment landing ">
-                  <div class="text-block">
-                  
-                    <h1 style={{fontSize: '55px !important'}}>COORDINATING TOTAL MANAGEMENT</h1>
-                    <h1 style={{fontSize: '45px !important'}}><div>FOR DOCTORS AND ADMINISTRATORS</div>
-                    </h1> 
-                    
-                  </div>
+                    <div class="text-block">
+                        <Typing speed={5} hideCursor={true}>
+                            <h1 style={{fontSize: '45px !important'}}>COORDINATING TOTAL MANAGEMENT FOR DOCTORS</h1>
+                            <h2 style={{fontSize: '30px !important'}}>
+                                <div>REGISTER AS A DOCTOR</div>
+                                <div>SEARCH PATIENT RECORDS</div>
+                                CREATE A NEW RECORD FOR PATIENTS
+                            </h2>
+                        </Typing>
+                    </div>
                 </div> 
-                {/* </Typing> */}
             </div>
         );
     }

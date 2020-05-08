@@ -3,6 +3,7 @@ import {Container } from 'semantic-ui-react';
 import Head from 'next/head';
 import Typing from 'react-typing-animation';
 
+
 class BannerInsurance extends Component {
     render() {
 
@@ -17,12 +18,17 @@ class BannerInsurance extends Component {
                     <link rel="stylesheet"  href="../static/css/insurance.css"/>
                 </Head>
                 <div class="ui text segment landing" >
-                  <div class="text-block">
-                  {/* <Typing speed={5} hideCursor={true}> */}
-                    <h1 style={{fontSize: '55px !important'}}>EMPOWERING MEMBERS</h1>
-                    <h1 style={{fontSize: '45px !important'}}>FOR INSURANCE COMPANIES</h1>
-                    {/* </Typing>  */}
-                  </div>
+                    <div class="text-block">
+                        <Typing speed={5} hideCursor={true}>
+                            <h1 style={{fontSize: '45px !important'}}>EMPOWERING MEMBERS FOR INSURANCE COMPANIES</h1>
+                            <h2 style={{fontSize: '30px !important'}}>
+                                <div>CREATE NEW INSURANCES</div>
+                                <div>CHECK ALL INSURANCES ISSUED</div>
+                                <div>CHECK ALL REQUESTS</div>
+                                APPROVE/REJECT ANY PENDING REQUESTS
+                            </h2>
+                        </Typing>
+                    </div>
                 </div> 
             </div>
         );

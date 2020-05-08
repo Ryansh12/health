@@ -3,7 +3,6 @@ import {Container } from 'semantic-ui-react';
 import Head from 'next/head';
 import Typing from 'react-typing-animation';
 
-
 class BannerHome extends Component {
     render() {
 
@@ -18,13 +17,15 @@ class BannerHome extends Component {
                     <link rel="stylesheet"  href="../static/css/homecss.css"/>
                 </Head>
                 <div class="ui text segment landing">
-                  <div class="text-block">
-                  <Typing speed={5} hideCursor={true}>
-                    <h1 style={{fontSize: '45px !important'}}>HEALTH DATA MANAGEMENT ON BLOCKCHAIN</h1>
-                    <h2 style={{fontSize: '30px !important'}}><div>GLOBAL PLATFORM FOR HEALTH MANAGEMENT BENEFIT</div>
-                    INSURANCE AND ADMINISTRATION</h2>
-                    </Typing> 
-                  </div>
+                    <div class="text-block">
+                        <Typing speed={5} hideCursor={true}>
+                            <h1 style={{fontSize: '45px !important'}}>HEALTH DATA MANAGEMENT ON BLOCKCHAIN</h1>
+                            <h2 style={{fontSize: '30px !important'}}>
+                                <div>GLOBAL PLATFORM FOR HEALTH MANAGEMENT BENEFIT</div>
+                                INSURANCE AND ADMINISTRATION
+                            </h2>
+                        </Typing> 
+                    </div>
                 </div> 
             </div>
         );
