@@ -15,6 +15,7 @@ class BannerHome extends Component {
                     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" /> 
                     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"></link>
                     <link rel="stylesheet"  href="../static/css/homecss.css"/>
+                    
                 </Head>
                 <div class="ui text segment landing">
                     <div class="text-block">

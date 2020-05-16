@@ -375,7 +375,7 @@ export default class ShowMedicalRecord extends Component {
     // .call();
 
     // this.setState( { name: demographicsData } );
-    // console.log(demographicsData);
+     console.log(this.props.data);
     if(this.props.once() == false) {
       this.setState({
         name: this.props.data[1][0],
@@ -1057,10 +1057,10 @@ export default class ShowMedicalRecord extends Component {
               <Grid.Row columns={1}>
                 <Grid.Column width="16">
                   <Message color="blue">
-                    <Message.Header>Namme</Message.Header>
-                    <pre> "asfdfadsfsadf&#13;dafasfadsfdsf" </pre>
-                  </Message>
-                </Grid.Column>
+                    <Message.Header>Name</Message.Header>
+                      <p>{this.state.name}</p>
+                    </Message>
+                  </Grid.Column>
               </Grid.Row>
               <Grid.Row columns={4}>
                 <Grid.Column>

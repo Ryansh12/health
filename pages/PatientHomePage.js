@@ -394,6 +394,7 @@ export class PatientHomePage extends Component {
           output = await address1.methods
             .getPatientDataPassword(this.state.searchPatientPassword)
             .call({ from: accounts[0] });
+            console.log(output);
         } catch (err) {
           this.setState({ searchPatientLoading: false });
           return;
@@ -696,6 +697,7 @@ export class PatientHomePage extends Component {
                 <Form
                   error={!!this.state.errorMessage}
                   onSubmit={this.searchPatient}
+                  className='attached fluid segment'
                 >
                   <Form.Field>
                     <label style={{ color: "#808080" }}>Aadhar</label>
@@ -735,6 +737,16 @@ export class PatientHomePage extends Component {
                     Search
                   </Button>
                 </Form>
+                <Message attached='bottom' info>
+              <Message.Header>Need Help?</Message.Header>
+                <p>To search patient</p>
+                <Message.List>
+                  <Message.Item>Enter aadhar no of <b>registered patient</b> </Message.Item>
+                  <Message.Item>Enter the password which was provided for creating this patient's contract</Message.Item>
+                  <Message.Item>After searching, you can see medical record and logs but you <b>cannot edit</b> it</Message.Item>
+                  <Message.Item>Also you can <b>download</b> the corresponding uploaded files</Message.Item>
+                </Message.List>
+            </Message>
               </div>
             ) : (
               <ShowMedicalRecord
@@ -792,7 +804,7 @@ export class PatientHomePage extends Component {
             <Header as="h4" color="grey">
               Add Doctor
             </Header>
-            <Form error={!!this.state.errorMessage} onSubmit={this.addDoctor}>
+            <Form error={!!this.state.errorMessage} onSubmit={this.addDoctor} className='attached fluid segment'>
               <Form.Field>
                 <label style={{ color: "#808080" }}>Aadhar</label>
                 <Form.Input
@@ -844,6 +856,16 @@ export class PatientHomePage extends Component {
                 Add
               </Button>
             </Form>
+            <Message attached='bottom' info>
+              <Message.Header>Need Help?</Message.Header>
+              <p>To authorise different doctor</p>
+                <Message.List>
+                  <Message.Item><b>Aadhar:</b> Enter aadhar no of <b>registered patient</b> </Message.Item>
+                  <Message.Item><b>Doctor Aadhar:</b> Enter the aadhar no of some different doctor whom you want to authorise</Message.Item>
+                  <Message.Item><b>Password:</b> Enter the password which was provided for creating this patient's contract, so that the other doctor can see the record using this password</Message.Item>
+                  <Message.Item>After clicking on <b>"Add"</b>, wait till the pop up shows <b>"Doctor added successfully"</b></Message.Item>
+                </Message.List>
+            </Message>
           </Tab.Pane>
         ),
       },
@@ -857,6 +879,7 @@ export class PatientHomePage extends Component {
             <Form
               error={!!this.state.errorMessage}
               onSubmit={this.addInsurance}
+              className='attached fluid segment'
             >
               <Form.Field>
                 <label style={{ color: "#808080" }}>Aadhar</label>
@@ -905,6 +928,16 @@ export class PatientHomePage extends Component {
                 Add
               </Button>
             </Form>
+            <Message attached='bottom' info>
+              <Message.Header>Need Help?</Message.Header>
+              <p>To add new insurance</p>
+                <Message.List>
+                  <Message.Item><b>Aadhar:</b> Enter aadhar no of <b>registered patient</b> </Message.Item>
+                  <Message.Item><b>Insurance Number:</b> Enter the insurance number given by <b>insurance admin</b></Message.Item>
+                  <Message.Item><b>Password:</b> Enter the password which was provided for creating this patient's contract</Message.Item>
+                  <Message.Item>After clicking on <b>"Add"</b>, wait till the pop up shows <b>"Insurance added successfully"</b></Message.Item>
+                </Message.List>
+            </Message>
           </Tab.Pane>
         ),
       },
@@ -917,6 +950,7 @@ export class PatientHomePage extends Component {
             </Header>
             <Form
               onSubmit={this.getDoctorDetails}
+              className='attached fluid segment'
             >
               <Form.Field>
                 <label style={{ color: "#808080" }}>Aadhar/Doctor Address</label>
@@ -939,6 +973,13 @@ export class PatientHomePage extends Component {
                 Search
               </Button>
             </Form>
+            <Message attached='bottom' info>
+            <Message.Header>Need Help?</Message.Header>
+            <p>To get Doctor info.</p>
+              <Message.List>
+              <Message.Item>Enter <b>valid 12 digit</b> aadhar no to fetch doctor's details</Message.Item>
+              </Message.List>
+            </Message>
           </Tab.Pane>
         ),
       },

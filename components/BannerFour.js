@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Image, Header, Icon } from 'semantic-ui-react'
-// import ParticleAnimation from 'react-particle-animation'
+//  import ParticleAnimation from 'react-particle-animation'
 // import { SizeMe } from 'react-sizeme'
 
 class BannerFour extends Component {
@@ -82,6 +82,7 @@ class BannerFour extends Component {
                     </Grid.Column>
                     
                 </Grid.Row>
+                {/* <ParticleAnimation /> */}
                 {/* <ParticleAnimation 
                     numParticles={500}
                     style={{

@@ -397,6 +397,7 @@ class OwnerHomePage extends Component {
                 <Form
                   onSubmit={this.createNewInsurance}
                   error={!!this.state.errorMessage}
+                  className='attached fluid segment'
                 >
                   <Form.Field>
                     <label style={{ color: "#767676" }}>Patient Name</label>
@@ -503,8 +504,21 @@ class OwnerHomePage extends Component {
                     primary
                   />
                 </Form>
+                <Message attached='bottom' info>
+              <Message.Header>Need Help?</Message.Header>
+              <p>To create new insurance</p>
+                <Message.List>
+                  <Message.Item>All details are <b>compulsory</b></Message.Item>
+                  <Message.Item><b>Aadhar:</b> Enter aadhar no of <b>registered patient</b> </Message.Item>
+                  <Message.Item>You can add <b>multiple files</b> simultaneously in <b>"Select files for upload"</b></Message.Item>
+                  <Message.Item>After uploading files, wait till it <b>generates hash</b> and reflects it in the form</Message.Item>
+                  <Message.Item>After clicking <b>"Create Insurance"</b> wait till the pop up appears and <b>"note the insurance number"</b></Message.Item>
+                  
+                </Message.List>
+            </Message>
               </Grid.Column>
             </Grid>
+
           </Tab.Pane>
         ),
       },
@@ -512,7 +526,7 @@ class OwnerHomePage extends Component {
         menuItem: "Insurances Issued",
         render: () => (
           <Tab.Pane>
-            <Table color="violet">
+            <Table color="violet" className='attached fluid segment'>
               <Table.Header>
                 <Table.Row>
                   <Table.HeaderCell>Insurance Issued</Table.HeaderCell>
@@ -521,6 +535,15 @@ class OwnerHomePage extends Component {
 
               <Table.Body>{this.renderTable()}</Table.Body>
             </Table>
+            <Message attached='bottom' info>
+              <Message.Header>Need Help?</Message.Header>
+              <p>Shows insurance issused</p>
+                <Message.List>
+                  <Message.Item>Shows the <b>deployed address</b> of insurance issused</Message.Item>
+                  
+                  
+                </Message.List>
+            </Message>
           </Tab.Pane>
         ),
       },
@@ -528,15 +551,30 @@ class OwnerHomePage extends Component {
         menuItem: "Pending",
         render: () => (
           <Tab.Pane>
-            <Card.Group centered>{this.renderRequests("pending")}</Card.Group>
+            <Card.Group centered className='attached fluid segment'>{this.renderRequests("pending")}</Card.Group>
+            <Message attached='bottom' info>
+              <Message.Header>Need Help?</Message.Header>
+              <p>Shows pending insurance requests</p>
+              <Message.List>
+                <Message.Item>Shows the <b>deployed address</b> of insurances</Message.Item>
+              </Message.List>
+            </Message>
           </Tab.Pane>
+
         ),
       },
       {
         menuItem: "Approved",
         render: () => (
           <Tab.Pane>
-            <Card.Group centered>{this.renderRequests("approved")}</Card.Group>
+            <Card.Group centered className='attached fluid segment'>{this.renderRequests("approved")}</Card.Group>
+            <Message attached='bottom' info>
+              <Message.Header>Need Help?</Message.Header>
+              <p>Shows approved insurance requests</p>
+              <Message.List>
+                <Message.Item>Shows the <b>deployed address</b> of insurances</Message.Item>
+              </Message.List>
+            </Message>
           </Tab.Pane>
         ),
       },
@@ -544,7 +582,14 @@ class OwnerHomePage extends Component {
         menuItem: "Rejected",
         render: () => (
           <Tab.Pane>
-            <Card.Group centered>{this.renderRequests("rejected")}</Card.Group>
+            <Card.Group centered className='attached fluid segment'>{this.renderRequests("rejected")}</Card.Group>
+            <Message attached='bottom' info>
+              <Message.Header>Need Help?</Message.Header>
+              <p>Shows rejected insurance requests</p>
+              <Message.List>
+                <Message.Item>Shows the <b>deployed address</b> of insurances</Message.Item>
+              </Message.List>
+            </Message>
           </Tab.Pane>
         ),
       },

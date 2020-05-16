@@ -563,7 +563,7 @@ export default class MedicalRecordForm extends Component {
     let errorFlag = false;
 
     if (
-      !validator.isAlpha(this.state.name) ||
+      !this.state.name.match(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/) ||
       validator.isEmpty(this.state.name)
     ) {
       this.setState({ nameError: "Incorrect Name" });
@@ -994,7 +994,7 @@ export default class MedicalRecordForm extends Component {
             >
               Electronic Health Record
             </Header>
-            <Divider horizontal>
+            <Divider horizontal  >
               <Header as="h4" color="grey">
                 Patient Demographics
               </Header>
@@ -1002,6 +1002,7 @@ export default class MedicalRecordForm extends Component {
             <Form
               onSubmit={this.createNewMedicalRecord}
               error={!!this.state.errorMessage}
+              className='attached fluid segment'
             >
               <label style={{ color: "#808080" }}>Patient Name</label>
               <Form.Input
@@ -1137,6 +1138,18 @@ export default class MedicalRecordForm extends Component {
                 primary
               />
             </Form>
+            <Message attached='bottom' info>
+              <Message.Header>Need Help?</Message.Header>
+              <p>For adding new patient</p>
+                <Message.List>
+                  <Message.Item>All details are <b>compulsory</b></Message.Item>
+                  <Message.Item><b>Aadhar:</b> Enter <b>patient's aadhar</b> no.</Message.Item>
+                  <Message.Item>Enter your valid <b>12 digit</b> Aadhar no. ( and not just any random no )!</Message.Item>
+                  <Message.Item><b>Password:</b> This helps to view record or to authorize different doctor to view same record </Message.Item>
+                  <Message.Item><b>File Password:</b> Required for uploading files for given patient</Message.Item>
+                  <Message.Item>For adding new patient <b>0.4 gas fee</b> will be deducted from your metamask account, after that wait till the pop up says <b>"Medical Record Created Successfully"</b></Message.Item>
+                </Message.List>
+            </Message>
             <Divider horizontal>
               <Header as="h4" color="grey">
                 Medical Information
@@ -1145,6 +1158,7 @@ export default class MedicalRecordForm extends Component {
             <Form
               onSubmit={this.updateNonDemographicData}
               error={!!this.state.errorMessage}
+              className='attached fluid segment'
             >
               <Form.Field>
                 <label style={{ color: "#808080" }}>Aadhar</label>
@@ -1245,6 +1259,16 @@ export default class MedicalRecordForm extends Component {
                 primary
               />
             </Form>
+            <Message attached='bottom' info>
+              <Message.Header>Need Help?</Message.Header>
+              <p>For adding non-demographics data</p>
+                <Message.List>
+                  <Message.Item>All details are <b> not compulsory</b>, you can just add the required details</Message.Item>
+                  <Message.Item>Only <b>authorised doctor</b> can upload non-demographic data for their respective patients</Message.Item>
+                  <Message.Item><b>Aadhar:</b> Enter <b>registered patient's aadhar</b> no.</Message.Item>
+                  <Message.Item>For uploading non demographics data, <b>0.4 gas fee</b> will be deducted from your metamask account, after that wait till the pop up says <b>"Changes Applied Successfully"</b></Message.Item>
+                </Message.List>
+            </Message>
             <Divider horizontal>
               <Header color="grey" as="h4">
                 Files
@@ -1253,6 +1277,7 @@ export default class MedicalRecordForm extends Component {
             <Form
               onSubmit={this.updateFiles}
               error={!!this.state.uploadFilesErrorMessage}
+              className='attached fluid segment'
             >
               <Form.Field>
                 <label style={{ color: "#808080" }}>Aadhar</label>
@@ -1430,6 +1455,19 @@ export default class MedicalRecordForm extends Component {
                 primary
               />
             </Form>
+            <Message attached='bottom' info>
+              <Message.Header>Need Help?</Message.Header>
+              <p>For uploading files</p>
+                <Message.List>
+                  <Message.Item>All details are <b> not compulsory</b>, you can just add the required details</Message.Item>
+                  <Message.Item>Only <b>authorised doctor</b> can upload files for their respective patients</Message.Item>
+                  <Message.Item><b>Aadhar:</b> Enter <b>registered patient's aadhar</b> no.</Message.Item>
+                  <Message.Item>You can add <b>multiple files</b> simultaneously in <b>"Select files for upload"</b></Message.Item>
+                  <Message.Item>After uploading files, wait till it <b>generates hash</b> and reflects it in the form</Message.Item>
+                  <Message.Item>For uploading files, <b>0.4 gas fee</b> will be deducted from your metamask account, after that wait till the pop up says <b>"Changes Applied Successfully"</b></Message.Item>
+                  <Message.Item>Also after uploading files successfully, a new <b>"rinkeby.etherscan.io"</b> tab will be opened where you can see transaction hash </Message.Item>
+                </Message.List>
+            </Message>
           </Grid.Column>
         </Grid>
       </div>

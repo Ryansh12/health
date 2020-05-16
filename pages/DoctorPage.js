@@ -180,7 +180,7 @@ export default class DoctorPage extends Component {
     }
 
     if (
-      !validator.isAlpha(this.state.name) ||
+      !this.state.name.match(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/) ||
       validator.isEmpty(this.state.name)
     ) {
       this.setState({ nameError: "Incorrect Name" });
@@ -269,7 +269,7 @@ export default class DoctorPage extends Component {
           
           <Tab.Pane>
             <Container>
-            <Segment>
+            <Segment className='attached fluid segment'>
             <Header as="h4" color="grey">
               Add Doctor
             </Header>
@@ -327,6 +327,16 @@ export default class DoctorPage extends Component {
               </Button>
             </Form>
             </Segment>
+            <Message attached='bottom' info>
+            <Message.Header>Need Help?</Message.Header>
+            <p>For adding new doctor</p>
+              <Message.List>
+                <Message.Item>All details are <b>compulsory</b></Message.Item>
+                <Message.Item>Enter your valid <b>12 digit</b> Aadhar no. ( and not just any random no )!</Message.Item>
+                <Message.Item>Also make sure that you use <b>new metamask account</b> with sufficient ethers to register a new Doctor, otherwise it will show already registered with that aadhar card even though you might not have ( as that existing metamask account might already have a registered doctor)</Message.Item>
+                <Message.Item>For adding new Doctor <b>0.4 gas fee</b> will be deducted from your metamask account, after that wait till the pop up says <b>"Registered successfully"</b></Message.Item>
+              </Message.List>
+            </Message>
             </Container>
           </Tab.Pane>
           
@@ -338,7 +348,7 @@ export default class DoctorPage extends Component {
           
           <Tab.Pane>
             <Container>
-            <Segment>
+            <Segment className='attached fluid segment'>
             {this.state.isSearchPatientActive ? (
               <div>
                 <Header style={{ color: "white" }} textAlign="center" icon>
@@ -385,6 +395,14 @@ export default class DoctorPage extends Component {
               </div>
             )}
             </Segment>
+            <Message attached='bottom' info>
+            <Message.Header>Need Help?</Message.Header>
+            <p>To search patient</p>
+              <Message.List>
+              <Message.Item>Only <b>authorized doctors</b> can view, edit and get logs of details of their registered patients and download the files uploaded</Message.Item>
+              <Message.Item>Also <b>authorized doctors</b> can claim new request insurance and see pending, approved and rejected requests</Message.Item>
+              </Message.List>
+            </Message>
             </Container>
           </Tab.Pane>
           
@@ -398,7 +416,9 @@ export default class DoctorPage extends Component {
             <Container>
               <Segment>
                           <MedicalRecordForm></MedicalRecordForm>
-              </Segment>
+              </Segment >
+              
+              
             </Container>
           </Tab.Pane>
           
