@@ -55,7 +55,8 @@ export class RequestInsRequests extends Component {
   }
 
   getBills = async () => {
-    this.setState({ downloadLoading: true });
+    this.setState({ downloadLoading: true ,
+      isLoaderDimmerActive: true});
     axios
       .get("/download", {
         params: {
@@ -65,6 +66,17 @@ export class RequestInsRequests extends Component {
         responseType: "blob",
       })
       .then((res) => {
+        
+
+        if(res["headers"]["flag"] == false){
+          this.setState({
+            modalHeader:"Error",
+            modalContent:"Something went wrong !!!",
+            modalIconColor:"red",
+            modalIconName:"cancel",
+            isModalOpen: true
+          });
+        } else {
         const url = window.URL.createObjectURL(new Blob([res.data]));
         const link = document.createElement("a");
         link.href = url;
@@ -72,7 +84,10 @@ export class RequestInsRequests extends Component {
         document.body.appendChild(link);
         link.click(); // then print response status
         this.setState({ downloadLoading: false });
+       } 
+       this.setState({isLoaderDimmerActive:false});
       })
+    
       .catch((err) => {
         // then print response status
       });

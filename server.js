@@ -198,95 +198,113 @@ app
         });
       });
       await up;
-      deleteFolderRecursive(newPathForStorage);
+      //deleteFolderRecursive(newPathForStorage);
       return res.status(200).send(output);
     });
 
-    server.get("/download", function (req, res) {
-      var options = { algorithm: 'aes256' };
-      let now = Date.now();
-      new Promise(async function (resolve, reject) {
-        console.log(" entry");
-
-        newPathForStorage = "public/" + now;
-        createDir(newPathForStorage);
-        let ips = ipfsAPI("ipfs.infura.io", "5001", { protocol: "https" });
-        //ips.files.get('QmS9JV65Wx3dmuoPCDcgptakwreBVdhGzULE2Y6ohxGxqG', function (err, files) {
-        // fs.writeFile( newPathForStorage + '/' + now + '.dat', files.content, function(err) {
-        //   console.log(';;;;;;;;;;;;;;;;;;;;;dddddddd')
-        //   if(err) {
-        //     console.log( err )
-        //   } else {
-        //     console.log(' successssssssssss')
-        //     resolve('Done')
-        //   }
-        // });
-
-        // console.log(files.path)
-        // console.log(files.content)
-        // const data = new Uint8Array(files.content);
-        // fs.writeFile(newPathForStorage + '/' + now + '.dat', data, (err) => {
-        //   if (err) throw err;
-        //   console.log('The file has been saved!');
-        // });
-
-        var file = fs.createWriteStream(newPathForStorage + "/" + now + ".dat");
-        console.log("{{{{{{{{{{{{{{ sanket" + req.query.data);
-        await http.get(
-          "http://gateway.ipfs.io/ipfs/".concat(req.query.data),
-          function (response) {
-            response.pipe(file);
-            console.log("[[[[[[[[[[[[[[[[[[[[[[[");
-            file.on("finish", function () {
-              file.close(() => {
-                console.log("Done");
-                resolve("Done");
-              });
-            });
-          }
-        );
-        //})
-      }).then(function (result) {
-        console.log("Inside");
-        console.log("Password "+req.query.password);
-        var key = req.query.password;
-        encryptor.decryptFile(
-          newPathForStorage + "/" + now + ".dat",
-          newPathForStorage + "/download.zip",
-          key,
-          options,
-          function (err) {
-            // Decryption complete
-            if (err) {
-              return console.log(err);
-            } else {
-              console.log("Inside yyyyy ");
-              let filePath = newPathForStorage + "/download.zip";
-
-              var filename = path.basename(filePath);
-
-              res.set({
-                "content-type": "application/json",
-                "content-length": "100",
-                warning:
-                  "with content type charset encoding will be added by default",
-              });
-              res.download(filePath, function(err){
-                //CHECK FOR ERROR
-                
-                deleteFolderRecursive(newPathForStorage);
-              });
-              //res.download( newPathForStorage + '/download.zip', 'user-facinname.zip');
-
-            }
-          }
-        );
+    
+      server.get("/download", function (req, res) {
+        try {	
+          var options = { algorithm: 'aes256' };	
+          let now = Date.now();	
+          new Promise(async function (resolve, reject) {	
+            console.log(" entry");	
+      
+            newPathForStorage = "public/" + now;	
+            createDir(newPathForStorage);	
+            let ips = ipfsAPI("ipfs.infura.io", "5001", { protocol: "https" });	
+            //ips.files.get('QmS9JV65Wx3dmuoPCDcgptakwreBVdhGzULE2Y6ohxGxqG', function (err, files) {	
+            // fs.writeFile( newPathForStorage + '/' + now + '.dat', files.content, function(err) {	
+            //   console.log(';;;;;;;;;;;;;;;;;;;;;dddddddd')	
+            //   if(err) {	
+            //     console.log( err )	
+            //   } else {	
+            //     console.log(' successssssssssss')	
+            //     resolve('Done')	
+            //   }	
+            // });	
+      
+            // console.log(files.path)	
+            // console.log(files.content)	
+            // const data = new Uint8Array(files.content);	
+            // fs.writeFile(newPathForStorage + '/' + now + '.dat', data, (err) => {	
+            //   if (err) throw err;	
+            //   console.log('The file has been saved!');	
+            // });	
+      
+            var file = fs.createWriteStream(newPathForStorage + "/" + now + ".dat");	
+            console.log("{{{{{{{{{{{{{{ sanket" + req.query.data);	
+            await http.get(	
+              "http://gateway.ipfs.io/ipfs/".concat(req.query.data),	
+              function (response) {	
+                response.pipe(file);	
+                console.log("[[[[[[[[[[[[[[[[[[[[[[[");	
+                file.on("finish", function () {	
+                  file.close(() => {	
+                    console.log("Done");	
+                    resolve("Done");	
+                  });	
+                });	
+              }	
+            );	
+            //})	
+          }).then(function (result) {	
+            console.log("Inside");	
+            console.log("Password "+req.query.password);	
+            var key = req.query.password;	
+            encryptor.decryptFile(	
+              newPathForStorage + "/" + now + ".dat",	
+              newPathForStorage + "/download.zip",	
+              key,	
+              options,	
+              function (err) {	
+                // Decryption complete	
+                if (err) {	
+                  return console.log(err);	
+                } else {	
+                  console.log("Inside yyyyy ");	
+                  let filePath = newPathForStorage + "/download.zip";	
+      
+                  var filename = path.basename(filePath);	
+      
+                  res.set({	
+                    "content-type": "application/json",	
+                    "content-length": "100",	
+                    "warning":	
+                      "with content type charset encoding will be added by default",	
+                      "flag": "true",	
+                  });	
+                  res.download(filePath, function(err){	
+                    //CHECK FOR ERROR	
+                      
+                    //deleteFolderRecursive(newPathForStorage);	
+                  });	
+                  //res.download( newPathForStorage + '/download.zip', 'user-facinname.zip');	
+      
+                }	
+              }	
+            );	
+          });	
+          // fs.readdirSync(newPathForStorage).forEach(function(file,index){	
+          //   if( file != 'compress' ) {	
+          //     var curPath = newPathForStorage + "/" + file;	
+          console.log("444444444444444444444");	
+        } catch( err ) {	
+          res.set({	
+            "content-type": "application/json",	
+            "content-length": "100",	
+            "warning":	
+              "with content type charset encoding will be added by default",	
+              "flag": "false",	
+          });	
+          res.download(filePath, function(err){	
+            //CHECK FOR ERROR	
+              
+            deleteFolderRecursive(newPathForStorage);	
+          });	
+        }	
       });
-      // fs.readdirSync(newPathForStorage).forEach(function(file,index){
-      //   if( file != 'compress' ) {
-      //     var curPath = newPathForStorage + "/" + file;
-      console.log("444444444444444444444");
-    });
+      
 
     server.get("*", (req, res) => {
       return handle(req, res);

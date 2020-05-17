@@ -370,7 +370,6 @@ class OwnerHomePage extends Component {
           <Tab.Pane>
             <Grid
               textAlign="left"
-              style={{ height: "100vh" }}
               verticalAlign="top"
               columns={1}
             >
@@ -556,7 +555,11 @@ class OwnerHomePage extends Component {
               <Message.Header>Need Help?</Message.Header>
               <p>Shows pending insurance requests</p>
               <Message.List>
-                <Message.Item>Shows the <b>deployed address</b> of insurances</Message.Item>
+                <Message.Item>Shows the details of pending requests</Message.Item>
+                <Message.Item>You can download the bills and documents</Message.Item>
+                <Message.Item>Also approve or reject the request</Message.Item>
+                <Message.Item>After clicking <b>"Approve"</b>, wait till the pop up says <b>"Request Approved Successfully"</b></Message.Item>
+                <Message.Item>After clicking <b>"Reject"</b>, wait till the pop up says <b>"Request Rejected Successfully"</b></Message.Item>
               </Message.List>
             </Message>
           </Tab.Pane>
@@ -572,7 +575,8 @@ class OwnerHomePage extends Component {
               <Message.Header>Need Help?</Message.Header>
               <p>Shows approved insurance requests</p>
               <Message.List>
-                <Message.Item>Shows the <b>deployed address</b> of insurances</Message.Item>
+                <Message.Item>Shows the details of approved insurance requests</Message.Item>
+                <Message.Item>You can download the bills and documents</Message.Item>
               </Message.List>
             </Message>
           </Tab.Pane>
@@ -587,7 +591,8 @@ class OwnerHomePage extends Component {
               <Message.Header>Need Help?</Message.Header>
               <p>Shows rejected insurance requests</p>
               <Message.List>
-                <Message.Item>Shows the <b>deployed address</b> of insurances</Message.Item>
+                <Message.Item>Shows the details of rejected insurance requests</Message.Item>
+                <Message.Item>You can download the bills and documents</Message.Item>
               </Message.List>
             </Message>
           </Tab.Pane>
@@ -932,7 +937,7 @@ class OwnerHomePage extends Component {
             
           ) : null}
           {this.state.isLoginActive ? (
-            <Segment stacked style={{ height: "100vh", background: "#F0F8FF" }}>
+            <Segment stacked style={{ height: "35vh", background: "#F0F8FF" }}>
               <Grid
                 textAlign="center"
                 style={{ height: "30vh" }}

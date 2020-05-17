@@ -305,7 +305,8 @@ export class showInsurance extends Component {
   };
 
   getDocuments = async () => {
-    this.setState({ downloadLoading: true });
+    this.setState({ downloadLoading: true ,
+      isLoaderDimmerActive: true});
     axios
       .get("/download", {
         params: {
@@ -315,6 +316,15 @@ export class showInsurance extends Component {
         responseType: "blob",
       })
       .then((res) => {
+        if(res["headers"]["flag"] == "false") {	
+          this.setState({	
+            modalHeader: "Error",	
+            modalContent: "Something went wrong !!!",	
+            modalIconColor: "red",	
+            modalIconName: "cancel",	
+            isModalOpen: true,	
+          });	
+        }else {
         const url = window.URL.createObjectURL(new Blob([res.data]));
         const link = document.createElement("a");
         link.href = url;
@@ -322,6 +332,8 @@ export class showInsurance extends Component {
         document.body.appendChild(link);
         link.click(); // then print response status
         this.setState({ downloadLoading: false });
+        }
+        this.setState( { isLoaderDimmerActive: false } );
       })
       .catch((err) => {
         // then print response status
@@ -378,7 +390,16 @@ export class showInsurance extends Component {
         menuItem: "Pending",
         render: () => (
           <Tab.Pane>
-            <Card.Group centered>{this.renderRequests("pending")}</Card.Group>
+            <Card.Group centered className='attached fluid segment'>{this.renderRequests("pending")}</Card.Group>
+            <Message attached='bottom' info>
+                  <Message.Header>Need Help?</Message.Header>
+                  <p>Shows pending requests</p>
+                    <Message.List>
+                    <Message.Item>Shows details of pending requests</Message.Item>
+                    <Message.Item>You can download the bills</Message.Item>
+                   
+                    </Message.List>
+                </Message>
           </Tab.Pane>
         ),
       },
@@ -386,7 +407,15 @@ export class showInsurance extends Component {
         menuItem: "Approved",
         render: () => (
           <Tab.Pane>
-            <Card.Group centered>{this.renderRequests("approved")}</Card.Group>
+            <Card.Group centered className='attached fluid segment'>{this.renderRequests("approved")}</Card.Group>
+            <Message attached='bottom' info>
+                  <Message.Header>Need Help?</Message.Header>
+                  <p>Shows approved insurances</p>
+                    <Message.List>
+                    <Message.Item>Shows the details of approved insurance requests</Message.Item>
+                <     Message.Item>You can download the bills</Message.Item>
+                    </Message.List>
+                </Message>
           </Tab.Pane>
         ),
       },
@@ -394,7 +423,15 @@ export class showInsurance extends Component {
         menuItem: "Rejected",
         render: () => (
           <Tab.Pane>
-            <Card.Group centered>{this.renderRequests("rejected")}</Card.Group>
+            <Card.Group centered className="attached fluid segment">{this.renderRequests("rejected")}</Card.Group>
+            <Message attached='bottom' info>
+                  <Message.Header>Need Help?</Message.Header>
+                  <p>Shows rejected insurance</p>
+                    <Message.List>
+                      <Message.Item>Shows the details of rejected insurance requests</Message.Item>
+                      <Message.Item>You can download the bills</Message.Item>
+                    </Message.List>
+                </Message>
           </Tab.Pane>
         ),
       },
@@ -424,6 +461,7 @@ export class showInsurance extends Component {
                 <Form
                   onSubmit={this.newInsuranceForm}
                   error={!!this.state.errorMessage}
+                  className='attached fluid segment'
                 >
                   <Form.Field>
                     <label style={{ color: "#808080" }}>Title</label>
@@ -510,6 +548,16 @@ export class showInsurance extends Component {
                     primary
                   />
                 </Form>
+                <Message attached='bottom' info>
+                  <Message.Header>Need Help?</Message.Header>
+                  <p>To claim insurance</p>
+                    <Message.List>
+                    <Message.Item>Only <b>authorized doctors</b> can claim insurance</Message.Item>
+                    <Message.Item>All details are <b>compulsory</b></Message.Item>
+                    <Message.Item>You have to upload <b>atleast one file</b></Message.Item>
+                    <Message.Item>After clicking on <b>"submit request"</b>, wait till the pop up says <b>"Request submitted successfully"</b></Message.Item>
+                    </Message.List>
+                </Message>
               </Grid.Column>
             </Grid>
             <style jsx>
@@ -529,8 +577,9 @@ export class showInsurance extends Component {
   render() {
     return (
       <div>
+    
         <Dimmer active={this.state.isLoaderDimmerActive}>
-          <Loader>{this.state.loadderDimmerContent}</Loader>
+          <Loader active={this.state.isLoaderDimmerActive} inline="centered">Loading</Loader>
         </Dimmer>
         <Modal open={this.state.isModalOpen}>
           <Header>

@@ -94,7 +94,10 @@ export class RequestRequests extends Component {
   getBills = async () => {
     let fileHash = this.props.request[6],
       pass = this.props.request[9];
-    this.setState({ billsDownloadLoading: true });
+    this.setState({ billsDownloadLoading: true ,
+      isLoaderDimmerActive: true
+    });
+    
     axios
       .get("/download", {
         params: {
@@ -104,14 +107,30 @@ export class RequestRequests extends Component {
         responseType: "blob",
       })
       .then((res) => {
+        
+
+        if(res["headers"]["flag"] == false){
+          this.setState({
+            modalHeader:"Error",
+            modalContent:"Something went wrong !!!",
+            modalIconColor:"red",
+            modalIconName:"cancel",
+            isModalOpen: true
+          });
+        } else {
+        console.log(res);
         const url = window.URL.createObjectURL(new Blob([res.data]));
+        
         const link = document.createElement("a");
         link.href = url;
         link.setAttribute("download", "download.zip");
         document.body.appendChild(link);
         link.click(); // then print response status
+
         this.setState({ billsDownloadLoading: false });
-      })
+      }
+      this.setState({isLoaderDimmerActive:false});
+    })
       .catch((err) => {
         // then print response status
       });
@@ -120,7 +139,9 @@ export class RequestRequests extends Component {
   getDocuments = async () => {
     let fileHash = this.props.request[10],
       pass = this.props.request[9];
-    this.setState({ docDownloadLoading: true });
+    this.setState({ docDownloadLoading: true ,
+      isLoaderDimmerActive: true});
+    
     axios
       .get("/download", {
         params: {
@@ -130,6 +151,17 @@ export class RequestRequests extends Component {
         responseType: "blob",
       })
       .then((res) => {
+        
+
+        if(res["headers"]["flag"] == false){
+          this.setState({
+            modalHeader:"Error",
+            modalContent:"Something went wrong !!!",
+            modalIconColor:"red",
+            modalIconName:"cancel",
+            isModalOpen: true
+          });
+        } else {
         const url = window.URL.createObjectURL(new Blob([res.data]));
         const link = document.createElement("a");
         link.href = url;
@@ -137,7 +169,9 @@ export class RequestRequests extends Component {
         document.body.appendChild(link);
         link.click(); // then print response status
         this.setState({ docDownloadLoading: false });
-      })
+      }
+      this.setState({isLoaderDimmerActive:false});
+    })
       .catch((err) => {
         // then print response status
       });

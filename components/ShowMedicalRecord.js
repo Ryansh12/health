@@ -747,6 +747,7 @@ export default class ShowMedicalRecord extends Component {
         return;
       }
     }
+    this.setState({isLoaderDimmerActive: true});
 
     axios
       .get("/download", {
@@ -757,13 +758,28 @@ export default class ShowMedicalRecord extends Component {
         responseType: "blob",
       })
       .then((res) => {
-        console.log(res);
-        const url = window.URL.createObjectURL(new Blob([res.data]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", "download.zip");
-        document.body.appendChild(link);
-        link.click(); // then print response status
+
+        
+
+        if(res["headers"]["flag"] == false){
+          this.setState({
+            modalHeader:"Error",
+            modalContent:"Something went wrong !!!",
+            modalIconColor:"red",
+            modalIconName:"cancel",
+            isModalOpen: true
+          });
+        } else {
+          console.log(res);
+          const url = window.URL.createObjectURL(new Blob([res.data]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "download.zip");
+          document.body.appendChild(link);
+          link.click(); // then print response status
+        }
+
+        this.setState({isLoaderDimmerActive:false});
       })
       .catch((err) => {
         // then print response status
@@ -1011,7 +1027,10 @@ export default class ShowMedicalRecord extends Component {
   render() {
     return (
       <div>
-        <Loader active={this.state.isLoaderDimmerActive} inline="centered" />
+        <Dimmer active={this.state.isLoaderDimmerActive}>
+          <Loader active={this.state.isLoaderDimmerActive} inline="centered">Loading</Loader>
+        </Dimmer>
+        
         <Modal open={this.state.isModalOpen}>
           <Header>
             <Icon
